@@ -434,13 +434,10 @@ footer a:hover{color:var(--c)}
 
 <!-- AI CHAT WINDOW -->
 <div id="gwin" role="dialog" aria-label="AI Sales Assistant">
-  <div id="gsetup">
-    <div style="font-size:2rem">🔑</div>
-    <h3>Connect Gemini API Key</h3>
-    <p>Get your FREE key from<br/><code>aistudio.google.com</code></p>
-    <input id="gkin" type="password" placeholder="AIzaSy..."/>
-    <button id="gkok">Activate ✨</button>
-    <span id="gskip">Skip — try demo mode</span>
+  <div id="gsetup" style="display:none">
+    <input id="gkin" type="hidden"/>
+    <button id="gkok" style="display:none"></button>
+    <span id="gskip" style="display:none"></span>
   </div>
   <div class="ghdr">
     <div class="gav">🤖</div>
@@ -832,7 +829,7 @@ function gclose(){gwin.classList.remove('open');gbtn.classList.remove('open')}
 
 gbtn.addEventListener('click',()=>gwin.classList.contains('open')?gclose():gopen());
 gcl.addEventListener('click',gclose);
-apiKey=k;demo=false;gact()});
+gkok.addEventListener('click',()=>{const k=gkin.value.trim();if(!k.startsWith('sk-ant')){gkin.style.borderColor='var(--rose)';gkin.placeholder='⚠️ Must start with sk-ant-...';return}apiKey=k;demo=false;gact()});
 gskip.addEventListener('click',()=>{demo=true;gact()});
 gkin.addEventListener('keydown',e=>{if(e.key==='Enter')gkok.click()});
 ginp.addEventListener('input',gar);
